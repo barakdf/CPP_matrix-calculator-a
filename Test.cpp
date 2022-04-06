@@ -140,6 +140,3 @@ TEST_CASE ("Invalid Arithmetic operations") {
             CHECK_NOTHROW(matrix3_3 - matrix3_3);
             CHECK_NOTHROW(matrix3_2 -= matrix3_2);
 }
-TEST_CASE("COUT") {
-    
-}
