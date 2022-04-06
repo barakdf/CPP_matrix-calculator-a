@@ -91,6 +91,15 @@ TEST_CASE ("Good Input") {
             Matrix mat_double_bigger({0, 0, 0, 0, 0, 0, 0, 0, 2.1},3,3);
             CHECK((mat_double_bigger > mat_double) == true);
         }
+        SUBCASE("Less|Equal then || Greater|Equal then") {
+            Matrix mat({1, 0, 0, 0, 0, 0, 0, 0, 0},3,3);
+            Matrix mat2({0, 0, 0, 0, 0, 0, 0, 0, 1},3,3);
+            CHECK((mat<mat2) == false);
+            CHECK((mat==mat2) == true);
+            CHECK((mat<= mat2) == true);
+            CHECK((mat >= mat2) == true);
+
+                }
     }
 
 
