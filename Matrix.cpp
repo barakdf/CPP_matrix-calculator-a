@@ -75,11 +75,6 @@ bool Matrix::operator>(const Matrix &other) {
 
 /*end boolean expressions*/
 
-//Matrix operator*(const Matrix &other) {
-//    Matrix ans({1},1,1);
-//    return ans;
-//}
-
 /* multiply matrix with scalar */
 Matrix zich::operator*(double scalar, const Matrix &other) {
     Matrix ans({1},1,1);
@@ -92,12 +87,12 @@ Matrix zich::operator*=( const Matrix &other,double scalar) {
 }
 
 
-Matrix zich::operator-(Matrix &matrix1) {
+Matrix zich::operator-(Matrix &matrix) {
     Matrix ans({1},1,1);
     return ans;
 }
 
-Matrix zich::operator+(Matrix &matrix1) {
+Matrix zich::operator+(Matrix &matrix) {
     Matrix ans({1},1,1);
     return ans;
 }

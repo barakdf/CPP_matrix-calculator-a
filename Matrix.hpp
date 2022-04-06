@@ -46,8 +46,8 @@ namespace zich {
 
         friend Matrix operator*(double scalar, const Matrix &other);
         friend Matrix operator*=( const Matrix &other,double scalar);
-        friend Matrix operator+(Matrix &matrix1);
-        friend Matrix operator-(Matrix &matrix1);
+        friend Matrix operator+(Matrix &matrix);
+        friend Matrix operator-(Matrix &matrix);
 
 
 

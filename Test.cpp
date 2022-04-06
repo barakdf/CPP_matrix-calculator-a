@@ -1,6 +1,4 @@
-//
-// Created by barak on 06/04/2022.
-//
+
 
 #include "doctest.h"
 #include "Matrix.hpp"
@@ -13,7 +11,8 @@ using namespace zich;
 
 /** Operators :
  *  Arithmetics --> (a+a/a-a/a*a), (a+=a / a-=a / a*=a / a*=~Num~), (+a/-a), (++,--)
- *  Boolean --> (==,!=), (<,>), (<=,>=) */
+ *  Boolean --> (==,!=), (<,>), (<=,>=)
+ *  iostream --> (<<), (>>)*/
 
 TEST_CASE ("Good Input") {
 
@@ -67,7 +66,7 @@ TEST_CASE ("Good Input") {
         }
     }
 
-            SUBCASE("Booleans") {
+            SUBCASE("Boolean Expressions") {
                 SUBCASE("Equal matrix") {
             Matrix mat({1, 0, 0, 0, 1, 0, 0, 0, 1}, 3, 3);
             Matrix mat2({1, 0, 0, 0, 1, 0, 0, 0, 1}, 3, 3);
@@ -83,24 +82,64 @@ TEST_CASE ("Good Input") {
                     CHECK((mat != mat2) != true);
         }
                 SUBCASE("Less then || Greater then") {
-            Matrix mat({1, 0, 0, 0, 0, 0, 0, 0, 0},3,3);
-            Matrix mat2({0, 0, 0, 0, 0, 0, 0, 1, 1},3,3);
-            CHECK((mat < mat2) == true);
-            Matrix mat_double({0, 0, 0, 0, 0.0000001, 0.5, 0.5, 0.5, 0.5},3,3);
-            CHECK((mat2 < mat_double) == true);
-            Matrix mat_double_bigger({0, 0, 0, 0, 0, 0, 0, 0, 2.1},3,3);
-            CHECK((mat_double_bigger > mat_double) == true);
+            Matrix mat({1, 0, 0, 0, 0, 0, 0, 0, 0}, 3, 3);
+            Matrix mat2({0, 0, 0, 0, 0, 0, 0, 1, 1}, 3, 3);
+                    CHECK((mat < mat2) == true);
+            Matrix mat_double({0, 0, 0, 0, 0.0000001, 0.5, 0.5, 0.5, 0.5}, 3, 3);
+                    CHECK((mat2 < mat_double) == true);
+            Matrix mat_double_bigger({0, 0, 0, 0, 0, 0, 0, 0, 2.1}, 3, 3);
+                    CHECK((mat_double_bigger > mat_double) == true);
         }
-        SUBCASE("Less|Equal then || Greater|Equal then") {
-            Matrix mat({1, 0, 0, 0, 0, 0, 0, 0, 0},3,3);
-            Matrix mat2({0, 0, 0, 0, 0, 0, 0, 0, 1},3,3);
-            CHECK((mat<mat2) == false);
-            CHECK((mat==mat2) == true);
-            CHECK((mat<= mat2) == true);
-            CHECK((mat >= mat2) == true);
+                SUBCASE("Less|Equal then || Greater|Equal then") {
+            Matrix mat({1, 0, 0, 0, 0, 0, 0, 0, 0}, 3, 3);
+            Matrix mat2({0, 0, 0, 0, 0, 0, 0, 0, 1}, 3, 3);
+                    CHECK((mat < mat2) == false);
+                    CHECK((mat == mat2) == true);
+                    CHECK((mat <= mat2) == true);
+                    CHECK((mat >= mat2) == true);
 
-                }
+        }
     }
 
 
+}
+
+TEST_CASE ("Bad Inputs") {
+
+            SUBCASE("Size doesn't match the matrix length") {
+                CHECK_THROWS(Matrix matrix({0, 0, 1, 1}, 2, 3));
+                CHECK_THROWS(Matrix matrix({0}, 1, 2));
+                CHECK_THROWS(Matrix matrix({100000000000000}, 2, 1));
+                CHECK_THROWS(Matrix matrix({0}, 0, 0));
+
+    }
+
+            SUBCASE("Negative size") {
+                CHECK_THROWS(Matrix matrix({0}, -1, 0));
+    }
+}
+
+TEST_CASE ("Invalid Arithmetic operations") {
+
+    /* multiplication methods */
+    Matrix matrix2_2({0, 0, 1, 1}, 2, 2);
+    Matrix matrix3_2({0, 0, 1, 1}, 3, 2);
+            CHECK_THROWS(matrix2_2 * matrix3_2);
+            CHECK_NOTHROW(matrix3_2 * matrix2_2);
+    Matrix matrix3_3({0, 0, 1, 1}, 3, 3);
+            CHECK_THROWS(matrix3_2 * matrix3_3);
+            CHECK_NOTHROW(matrix3_3 * matrix3_2);
+    /* Addition and subtraction */
+            CHECK_THROWS(matrix3_2 + matrix3_3);
+            CHECK_THROWS(matrix3_2 - matrix3_3);
+            CHECK_THROWS(matrix3_3 + matrix3_2);
+            CHECK_THROWS(matrix3_3 - matrix3_2);
+    /* when the matrices have the same row and col --> OK*/
+            CHECK_NOTHROW(matrix3_3 + matrix3_3);
+            CHECK_NOTHROW(matrix3_2 += matrix3_2);
+            CHECK_NOTHROW(matrix3_3 - matrix3_3);
+            CHECK_NOTHROW(matrix3_2 -= matrix3_2);
+}
+TEST_CASE("COUT") {
+    
 }
