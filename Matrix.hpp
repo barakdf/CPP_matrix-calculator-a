@@ -17,7 +17,7 @@ namespace zich {
 
 
 
-
+        /* Arithmetic Operators */
         Matrix operator-(const Matrix &other);
         Matrix operator+(const Matrix &other);
         Matrix operator*(const Matrix &other);
@@ -26,7 +26,7 @@ namespace zich {
         void operator++();
 
 
-
+        /* self-object arithmetic operators */
         void operator-=(const Matrix &other);
         void operator+=(const Matrix &other);
         void operator*=(const Matrix &other);
@@ -51,7 +51,7 @@ namespace zich {
 
 
 
-
+        /* IO Operators*/
         friend std::ostream& operator<<(std::ostream& ostream, const Matrix& other);
         friend std::ostream& operator>>(std::ostream& ostream, const Matrix& other);
 

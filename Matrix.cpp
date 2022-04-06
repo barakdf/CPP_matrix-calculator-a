@@ -80,7 +80,6 @@ Matrix zich::operator*(double scalar, const Matrix &other) {
     Matrix ans({1},1,1);
     return ans;
 }
-
 Matrix zich::operator*=( const Matrix &other,double scalar) {
     Matrix ans({1},1,1);
     return ans;
